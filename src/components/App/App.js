@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getOrders} from '../../apiCalls';
+import { getOrders } from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       orders: []
     }
@@ -14,6 +14,7 @@ class App extends Component {
 
   componentDidMount() {
     getOrders()
+      .then(response => this.setState({ orders: response.orders }))
       .catch(err => console.error('Error fetching:', err));
   }
 
