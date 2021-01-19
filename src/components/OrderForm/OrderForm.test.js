@@ -1,7 +1,9 @@
 import React from "react";
-import { screen, render } from "@testing-library/react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import OrderForm from "./OrderForm.js";
+import { postOrder } from '../../apiCalls';
+jest.mock('../../apiCalls.js')
 
 describe("OrderForm", () => {
 
@@ -53,6 +55,14 @@ describe("OrderForm", () => {
   })
 
   it("should display an ingredient once an ingredient button is clicked", () => {
+    render(<OrderForm />)
 
+    const steakButton = screen.getByText('steak')
+
+    fireEvent.click(steakButton)
+
+    const selectedIngredient = screen.getByText('Order: steak')
+
+    expect(selectedIngredient).toBeInTheDocument()
   })
 })
