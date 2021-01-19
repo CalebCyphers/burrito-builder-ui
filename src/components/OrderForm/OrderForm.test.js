@@ -35,4 +35,24 @@ describe("OrderForm", () => {
     expect(sourCreamButton).toBeInTheDocument()
 
   })
+
+  it("should display a submit button", () => {
+    render(<OrderForm />)
+
+    const submitButton = screen.getByText('Submit Order')
+
+    expect(submitButton).toBeInTheDocument()
+  })
+
+  it("should display error handling if no ingredients are added", () => {
+    render(<OrderForm />)
+
+    const errorMessage = screen.getByText('Order: Nothing selected')
+
+    expect(errorMessage).toBeInTheDocument()
+  })
+
+  it("should display an ingredient once an ingredient button is clicked", () => {
+
+  })
 })
