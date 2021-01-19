@@ -15,7 +15,8 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     postOrder(this.state.name, this.state.ingredients)
-      .then(data => console.log(data))
+      .catch(err => console.log('Error posting:', err));
+    this.props.updateOrders()
     this.clearInputs();
   }
 
